@@ -171,12 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
       //求めた座標を描画する
       ctx.lineTo(px, py);
     }
-    /*forEachを使っても動きそう
-    euler.forEach(coordinates => {
-    const px = coordinates.x * 50;
-    const py = canvas.height - coordinates.y * 50;
-    ctx.lineTo(px, py);
-    });*/
     ctx.stroke();
     ctx.beginPath();
     ctx.strokeStyle = "blue";
@@ -192,12 +186,6 @@ document.addEventListener("DOMContentLoaded", function () {
       //求めた座標を描画する
       ctx.lineTo(px, py);
     }
-    /*
-    rk.forEach(coordinates => {
-      const px = coordinates.x * 50;
-      const py = canvas.height - coordinates.y * 50;
-      ctx.lineTo(px, py);
-    });*/
     ctx.stroke();
   }
 });
