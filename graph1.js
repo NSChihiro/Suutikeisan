@@ -44,14 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
     //初期値
     let x = 0;
     let y = y0;
+
+    euler_x.push(x);
+    euler_y.push(y);
     // オイラー法
     for (let i = 0; i < n; i++) {
-      //2つの配列にxyの数値をそれぞれ代入
-      euler_x.push(x);
-      euler_y.push(y);
       //関数fで計算
       y += f(h, y);
       x += h;
+      //2つの配列にxyの数値をそれぞれ代入
       euler_x.push(x);
       euler_y.push(y);
     }
@@ -61,9 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
     //ルンゲクッタ法で計算した結果を入れる配列、xy座標それぞれを入れるために2つ作成
     const rk_x = [];
     const rk_y = [];
+
+    rk_x.push(x);
+    rk_y.push(y);
     for (let i = 0; i < n; i++) {
-      rk_x.push(x);
-      rk_y.push(y);
       // ルンゲ・クッタ法
       const k1 = f(h, y);
       const k2 = f(h, (y + k1 / 2));

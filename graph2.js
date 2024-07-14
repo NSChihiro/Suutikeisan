@@ -34,9 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let x = 0;
     let y = y0;
 
+    euler_x.push(x);
+    euler_y.push(y);
     for (let i = 0; i < n; i++) {
-      euler_x.push(x);
-      euler_y.push(y);
       y += f(h, x, y);
       x += h;
       euler_x.push(x);
@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
     y = y0;
     const rk_x = [];
     const rk_y = [];
+    rk_x.push(x);
+    rk_y.push(y);
     for (let i = 0; i < n; i++) {
-      rk_x.push(x);
-      rk_y.push(y);
       const k1 = f(h, x, y);
       const k2 = f(h, (x + h / 2), (y + k1 / 2));
       const k3 = f(h, (x + h / 2), (y + k2 / 2));
