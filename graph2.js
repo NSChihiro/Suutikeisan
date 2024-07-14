@@ -29,22 +29,27 @@ document.addEventListener("DOMContentLoaded", function () {
   function graph(y0, n) {
     const h = 3 / n;  // 時間刻み
 
-    const euler = [];
+    const euler_x = [];
+    const euler_y = [];
     let x = 0;
     let y = y0;
 
     // オイラー法
     for (let i = 0; i < n; i++) {
-      euler.push({ x, y });
+      euler_x.push(x);
+      euler_y.push(y);
       y += f(h, x, y);
       x += h;
-      euler.push({ x, y });
+      euler_x.push(x);
+      euler_y.push(y);
     }
     x = 0;  // 初期x値
     y = y0;  // 初期y値
-    const rk = [];
+    const rk_x = [];
+    const rk_y = [];
     for (let i = 0; i < n; i++) {
-      rk.push({ x, y });
+      rk_x.push(x);
+      rk_y.push(y);
       // ルンゲ・クッタ法による計算
       const k1 = f(h, x, y);
       const k2 = f(h, (x + h / 2), (y + k1 / 2));
@@ -52,7 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const k4 = f(h, (x + h), (y + k3));
       y += (k1 + 2 * k2 + 2 * k3 + k4) / 6;
       x += h;
-      rk.push({ x, y });
+      rk_x.push(x);
+      rk_y.push(y);
     }
 
     function f(h, x, y) {
@@ -110,10 +116,11 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.beginPath();
     ctx.strokeStyle = "red";
     ctx.moveTo(0, canvas.height);
-    for (let i = 0; i < euler.length; i++) {
-      const coordinates = euler[i];
-      const px = coordinates.x * 300;
-      const py = canvas.height - coordinates.y * 50;
+    for (let i = 0; i < euler_y.length; i++) {
+      const coordinates_x = euler_x[i];
+      const coordinates_y = euler_y[i];
+      const px = coordinates_x * 300;
+      const py = canvas.height - coordinates_y * 50;
       ctx.lineTo(px, py);
     }
     ctx.stroke();
@@ -121,10 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.beginPath();
     ctx.strokeStyle = "blue";
     ctx.moveTo(0, canvas.height);
-    for (let i = 0; i < rk.length; i++) {
-      const coordinates = rk[i];
-      const px = coordinates.x * 300;  // X軸のスケール調整
-      const py = canvas.height - coordinates.y * 50;
+    for (let i = 0; i < rk_y.length; i++) {
+      const coordinates_x = rk_x[i];
+      const coordinates_y = rk_y[i];
+      const px = coordinates_x * 300;  // X軸のスケール調整
+      const py = canvas.height - coordinates_y * 50;
       ctx.lineTo(px, py);
     }
     ctx.stroke();

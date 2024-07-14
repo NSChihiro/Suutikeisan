@@ -38,27 +38,32 @@ document.addEventListener("DOMContentLoaded", function () {
   function graph(y0, n) {
     const h = 16 / n; // xの範囲0から16,16をh等分したうちの一つの長さ
 
-    //オイラー法で計算した結果を入れる配列
-    const euler = [];
+    //オイラー法で計算した結果を入れる配列、xy座標それぞれを入れるために2つ作成
+    const euler_x = [];
+    const euler_y = [];
     //初期値
     let x = 0;
     let y = y0;
     // オイラー法
     for (let i = 0; i < n; i++) {
-      //配列に数値を代入
-      euler.push({ x, y });
+      //2つの配列にxyの数値をそれぞれ代入
+      euler_x.push(x);
+      euler_y.push(y);
       //関数fで計算
       y += f(h, y);
       x += h;
-      euler.push({ x, y });
+      euler_x.push(x);
+      euler_y.push(y);
     }
     //初期値
     x = 0;
     y = y0;
-    //ルンゲクッタ法で計算した結果を入れる配列
-    const rk = [];
+    //ルンゲクッタ法で計算した結果を入れる配列、xy座標それぞれを入れるために2つ作成
+    const rk_x = [];
+    const rk_y = [];
     for (let i = 0; i < n; i++) {
-      rk.push({ x, y });
+      rk_x.push(x);
+      rk_y.push(y);
       // ルンゲ・クッタ法
       const k1 = f(h, y);
       const k2 = f(h, (y + k1 / 2));
@@ -66,7 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const k4 = f(h, (y + k3));
       y += (k1 + 2 * k2 + 2 * k3 + k4) / 6;
       x += h;
-      rk.push({ x, y });
+      rk_x.push(x);
+      rk_y.push(y);
     }
 
     //数式の計算を行う
@@ -161,13 +167,14 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.strokeStyle = "red";
     //オイラー法グラフの初期値を設定
     ctx.moveTo(0, canvas.height);
-    for (let i = 0; i < euler.length; i++) {
-      //coordinates=座標。オイラー配列を変数coordinatesへ
-      const coordinates = euler[i];
+    for (let i = 0; i < euler_x.length; i++) {
+      //coordinates=座標。オイラー配列2つを変数coordinatesへ
+      const coordinates_x = euler_x[i];
+      const coordinates_y = euler_y[i];
       // 配列の数値を50倍しcanvasとx軸のスケールを合わせる
-      const px = coordinates.x * 50;
+      const px = coordinates_x * 50;
       // 配列の数値を50倍しcanvasとy軸のスケールを合わせる、先述した通り高さは逆向きに座標が増えるのでそれに合わせて計算も変更している
-      const py = canvas.height - coordinates.y * 50;
+      const py = canvas.height - coordinates_y * 50;
       //求めた座標を描画する
       ctx.lineTo(px, py);
     }
@@ -176,13 +183,14 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.strokeStyle = "blue";
     //ルンゲクッタ法グラフの初期値を設定
     ctx.moveTo(0, canvas.height);
-    for (let i = 0; i < rk.length; i++) {
-      //coordinates=座標。ルンゲクッタ配列を変数coordinatesへ
-      const coordinates = rk[i];
+    for (let i = 0; i < rk_x.length; i++) {
+      //coordinates=座標。ルンゲクッタ配列二つをを変数coordinatesへ
+      const coordinates_x = rk_x[i];
+      const coordinates_y = rk_y[i];
       // 配列の数値を50倍しcanvasとx軸のスケールを合わせる
-      const px = coordinates.x * 50;
+      const px = coordinates_x * 50;
       // 配列の数値を50倍しcanvasとy軸のスケールを合わせる,先述した通り高さは逆向きに座標が増えるのでそれに合わせて計算も変更している
-      const py = canvas.height - coordinates.y * 50;
+      const py = canvas.height - coordinates_y * 50;
       //求めた座標を描画する
       ctx.lineTo(px, py);
     }
