@@ -1,0 +1,33 @@
+.container {
+  font-family: sans-serif;
+  max-width: 1420px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+}
+
+.left {
+  flex: 1;
+  padding: 20px;
+}
+
+input[type="text"],
+input[type="range"],
+input[type="submit"] {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}

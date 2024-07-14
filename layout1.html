@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>オイラー法・ルンゲクッタ法</title>
+  <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title-container">
+      <h1 class="title">常微分方程式(dy/dx=1/y)のグラフ</h1>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <form id="inputForm">
+          <label for="y0">初期値 y(0):</label>
+          <input type="text" id="y0" name="y0" placeholder="y(0)の値を入力">
+          <input type="submit" value="グラフを描く">
+        </form>
+
+        <div class="slider-container">
+          <label for="splits">分割数 (1メモリ5):</label>
+          <input type="range" id="splits" name="splits" min="5" max="1000" step="5" value="100">
+          <span id="scale">100</span>
+        </div>
+        <div class="explanation">
+          <p>dy/dx=1/yの式をオイラー法とルンゲクッタ法で描画している。<br />
+              青い線はルンゲクッタ法、赤色はオイラー法のグラフである。<br />
+              スライドバーの数値を変えることで分割数が変わりhが変化するので<br />
+              それによる誤差も体感してもらいたい。<br />
+              初期値は半角で小数点単位で自由に設定できる。<br />
+              このグラフは初期値を大きくすればするほど<br />
+              グラフが直線に近づくので<br />
+              傾きが一定に近づくほどオイラー法の誤差が少なくなるという<br />
+              ことを体感してほしい。<br />
+              </p>
+        </div>
+      </div>
+
+      <div class="right">
+        <canvas id="graphCanvas" width="800" height="600"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="graph1.js" defer></script>
+</body>
+</html>

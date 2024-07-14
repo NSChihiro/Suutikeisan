@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>オイラー法・ルンゲクッタ法</title>
+  <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title-container">
+      <h1 class="title">常微分方程式(dy/dx=xy)のグラフ</h1>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <form id="inputForm">
+          <label for="y0">初期値 y(0):</label>
+          <input type="text" id="y0" name="y0" placeholder="y(0)の値を入力">
+          <input type="submit" value="グラフを描く">
+        </form>
+
+        <div class="slider-container">
+          <label for="splits">分割数 (1メモリ10):</label>
+          <input type="range" id="splits" name="splits" min="5" max="1000" step="5" value="100">
+          <span id="scale">100</span>
+        </div>
+        <div class="explanation">
+          <p>dy/dx=xyの式をオイラー法とルンゲクッタ法で描画している。<br />
+            スライドバーの数値を変えることで分割数が変わりhが変化するので<br />
+            それによる誤差を体感してもらいたい。<br />
+            初期値は半角の数字で小数点単位で自由に設定できる。<br />
+            初期値を大きくするとグラフの傾きも大きくなるので<br />
+            傾きが急になるとオイラー法の誤差が増えることを体感してもらいたいが、<br />
+            12以上にするとグラフが画面外に行ってしまうので注意してほしい。<br />
+           </p>
+        </div>
+      </div>
+
+      <div class="right">
+        <canvas id="graphCanvas" width="800" height="600"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="graph2.js" defer></script>
+</body>
+</html>
