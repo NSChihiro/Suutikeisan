@@ -27,14 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function graph(y0, n) {
-    const h = 3 / n;  // 時間刻み
+    const h = 3 / n;
 
     const euler_x = [];
     const euler_y = [];
     let x = 0;
     let y = y0;
 
-    // オイラー法
     for (let i = 0; i < n; i++) {
       euler_x.push(x);
       euler_y.push(y);
@@ -43,14 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
       euler_x.push(x);
       euler_y.push(y);
     }
-    x = 0;  // 初期x値
-    y = y0;  // 初期y値
+    x = 0;
+    y = y0;
     const rk_x = [];
     const rk_y = [];
     for (let i = 0; i < n; i++) {
       rk_x.push(x);
       rk_y.push(y);
-      // ルンゲ・クッタ法による計算
       const k1 = f(h, x, y);
       const k2 = f(h, (x + h / 2), (y + k1 / 2));
       const k3 = f(h, (x + h / 2), (y + k2 / 2));
@@ -131,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < rk_y.length; i++) {
       const coordinates_x = rk_x[i];
       const coordinates_y = rk_y[i];
-      const px = coordinates_x * 300;  // X軸のスケール調整
+      const px = coordinates_x * 300;
       const py = canvas.height - coordinates_y * 50;
       ctx.lineTo(px, py);
     }
