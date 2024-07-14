@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function f(h, x, y) {
       return h * x * y;
     }
-    // グラフを描く
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // 軸を描画
+
     ctx.beginPath();
     ctx.strokeStyle = "white";
     for (let i = 0; i <= canvas.width; i += 50) {
@@ -73,42 +73,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     ctx.stroke();
     ctx.beginPath();
-    //線の色を黒に
     ctx.strokeStyle = "black";
-    //グラフの軸の線の太さを3にする
     ctx.lineWidth = 3;
-    //文字のサイズとフォントを指定、サイズのみ指定したいが単体で変える方法がわからなかった
     ctx.font = "15px Arial";
-    //文字の色を青に設定
     ctx.fillStyle = "blue";
-    //文字を座標660、15に配置
     ctx.fillText("青はルンゲクッタ法", 660, 15);
-    //文字の色を赤に設定
     ctx.fillStyle = "red";
-    //文字を座標690、35に配置
     ctx.fillText("赤はオイラー法", 690, 35);
-    //y軸を0からcanvasの高さまで描画
     ctx.moveTo(0, canvas.height - 1);
     ctx.lineTo(canvas.width, canvas.height - 1);
-    //x軸を0からcanvasの高さまで描画
     ctx.moveTo(1, 0);
     ctx.lineTo(1, canvas.height);
     ctx.stroke();
-    // X軸のメモリ
+
     ctx.beginPath();
-    //フォントサイズを10pxに設定
     ctx.font = "10px Arial";
-    //フォントの色を黒に設定
     ctx.fillStyle = "black";
     ctx.strokeStyle = "black";
     ctx.lineWidth = 1;
     for (let i = 0; i <= canvas.width; i += 50) {
       ctx.moveTo(i, canvas.height - 10);
       ctx.lineTo(i, canvas.height + 10);
-      //ctx.fillText(i / 50, i, canvas.height - 15);
     }
     ctx.stroke();
-    // Y軸のメモリ
     ctx.beginPath();
     ctx.strokeStyle = "black";
     j = 12;
